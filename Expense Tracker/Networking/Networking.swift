@@ -37,7 +37,7 @@ class Networking {
       
       static var networking: Networking = Networking()
       
-      func callApi<T: Codable>(_ api: API, _ type: T.Type) -> AnyPublisher<T,   Error>? {
+      func callApi<T: Decodable>(_ api: API, _ type: T.Type) -> AnyPublisher<T,   Error>? {
           
           guard let url = api.path else {
                 return nil
