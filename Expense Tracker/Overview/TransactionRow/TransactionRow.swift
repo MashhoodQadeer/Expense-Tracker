@@ -23,7 +23,7 @@ struct TransactionRow: View {
             .fill(Color.icon.opacity(0.3))
             .frame(width: 44, height: 44)
             .overlay {
-                FontIcon.text( .awesome5Solid(code: .icons),
+                FontIcon.text( .awesome5Solid(code: self.transaction.categoryIcon),
                                fontsize:24, color: Color.icon
                 )
             }
@@ -66,9 +66,12 @@ struct TransactionRow_Previews: PreviewProvider {
     
     static var previews: some View {
             
-           Group{
+           Group {
+               
                TransactionRow(transaction: transactionPreview)
-               TransactionRow(transaction:       transactionPreview).colorScheme(.dark)
+               
+               TransactionRow(transaction:      transactionPreview).colorScheme(.dark)
+               
            }
            
     }
