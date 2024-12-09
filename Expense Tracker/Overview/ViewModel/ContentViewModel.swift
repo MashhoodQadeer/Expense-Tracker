@@ -11,14 +11,19 @@ class ContentViewModel: ObservableObject {
       //Loader
       @Published var loading: Bool = false
     
+      private var isDataFetched: Bool = false
+    
       //DisposeBags
       var disposeBags: Set<AnyCancellable> = Set<AnyCancellable>()
       
       func loadTransactions(){
           
+          if self.isDataFetched {
+             return
+          }
+          
           //Fetching The API Response
           let api = API.TRANSACTIONS
-          
           
           self.loading = true
           Networking.networking.callApi(api, [Transaction].self)?.sink(receiveCompletion: { [weak self] completion in
@@ -39,9 +44,10 @@ class ContentViewModel: ObservableObject {
           }, receiveValue: { transactionsList in
              
              self.transactionsList = transactionsList
+             self.isDataFetched = true
               
           }).store(in: &self.disposeBags)
           
       }
-    
+      
 }

@@ -53,9 +53,10 @@ struct TransactionRow: View {
             Spacer()
             
             //Amount
-            Text( transaction.signedAmount, format: .currency(code: "USD") )
-                .bold()
-                .foregroundColor(.secondary)
+            Text( transaction.signedAmount,
+                  format: .currency(code: "USD") )
+                 .bold()
+                 .foregroundColor( (transaction.type == .debit) ? Color.red : Color.secondary)
             
         }.padding( 8 )
     }
