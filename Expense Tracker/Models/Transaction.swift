@@ -4,6 +4,7 @@
 
 import Foundation
 import SwiftUIFontIcon
+import OrderedCollections
 
 struct Transaction: Hashable, Identifiable, Decodable {
     
@@ -183,6 +184,56 @@ extension Category {
     static var allCategories: [Category] {
            let combinedArray = categories + subcategories
            return combinedArray
+    }
+    
+}
+
+extension Transaction {
+    
+    static func getOrderedTransactions(transactions: [Transaction]) -> OrderedDictionary<String, [Transaction]> {
+        
+         let dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = "MMMM yyyy"
+         var orderedDictionary = OrderedDictionary<String, [Transaction]>()
+
+         for transaction in transactions {
+             
+             let dateKey = dateFormatter.string(
+                                        from: transaction.date.americanDateValue
+                                               )
+             if orderedDictionary[dateKey] != nil {
+                orderedDictionary[dateKey]?.append(transaction)
+             } else {
+                orderedDictionary[dateKey] = [transaction]
+             }
+             
+         }
+
+         return orderedDictionary
+        
+    }
+
+    static func getOrderedTransactionSum(transactions: [Transaction]) -> OrderedDictionary<String, Double> {
+        
+         let dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = "dd MMMM yyyy"
+         var orderedDictionary = OrderedDictionary<String, Double>()
+
+         for transaction in transactions {
+             
+             let dateKey = dateFormatter.string(
+                                        from: transaction.date.americanDateValue
+                                               )
+             if orderedDictionary[dateKey] != nil {
+                 orderedDictionary[dateKey] = transaction.amount + (orderedDictionary[dateKey] ?? 0)
+             } else {
+                 orderedDictionary[dateKey] = transaction.amount
+             }
+             
+         }
+
+         return orderedDictionary
+        
     }
     
 }

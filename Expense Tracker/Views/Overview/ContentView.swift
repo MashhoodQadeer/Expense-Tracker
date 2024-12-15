@@ -22,6 +22,10 @@ struct ContentView: View {
                 .padding(.top)
                 .frame(maxWidth: .infinity)
                 
+                if viewModel.transactionsList.count != 0 {
+                    ChartsView(transactionsGraphData: .constant(viewModel.transactionsList.map({$0.amount}))).padding()
+                }
+                
                 //Transactions List
                 VStack{
                     RecentTransactionList( isLoading: $viewModel.loading, transactionsList: $viewModel.transactionsList)
@@ -43,6 +47,7 @@ struct ContentView: View {
             }
             
         }.navigationViewStyle(.stack)
+        .accentColor(Color.primary)
         
     }
     

@@ -1,6 +1,15 @@
 {
-  "originHash" : "7d5c38efc58a092ea3c5fbace30be1c179a5a1ddc4cf3822916e6f1150785dcd",
+  "originHash" : "a96f19c7dfbf8683c20ac781f2bf4a6bad9784be8446e38ad5e237b7e0650130",
   "pins" : [
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections.git",
+      "state" : {
+        "revision" : "671108c96644956dddcd89dd59c203dcdb36cec7",
+        "version" : "1.1.4"
+      }
+    },
     {
       "identity" : "swiftuifonticon",
       "kind" : "remoteSourceControl",

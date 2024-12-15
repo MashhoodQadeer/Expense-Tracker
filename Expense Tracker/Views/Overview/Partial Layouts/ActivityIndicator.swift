@@ -9,7 +9,6 @@ struct LoadingIndicator: UIViewRepresentable {
     
     @Binding var isLoading: Bool
     
-
     func makeUIView(context: Context) -> UIActivityIndicatorView {
         
          let activityIndicator = UIActivityIndicatorView(style: .large)

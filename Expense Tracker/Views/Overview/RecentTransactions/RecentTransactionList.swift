@@ -3,12 +3,14 @@
 //  Created by Mashhood Qadeer on 10/12/2024.
 
 import SwiftUI
+import Collections
 
 struct RecentTransactionList: View {
     
     var transactionsPrefix: Int = 5
     @Binding var isLoading: Bool
     @Binding var transactionsList: [Transaction]
+    @State var showTransactionsList: Bool = false
     
     var body: some View {
         
@@ -22,15 +24,25 @@ struct RecentTransactionList: View {
                 
                 Spacer()
                 
-                NavigationLink{
-                    
-                } label: {
-                    HStack(spacing: 4){
-                        Text("See All")
-                        Image(systemName: "chevron.right")
-                    }
-                    .foregroundColor(Color.textColor)
+                HStack(spacing: 4){
+                    Text("See All")
+                    Image(systemName: "chevron.right")
                 }
+                .foregroundColor(Color.textColor)
+                .onTapGesture {
+                    
+                    showTransactionsList = true
+                    
+                }
+                
+                //Navigation
+                NavigationLink( destination:
+                                    
+                                    TransactionsList(orderedTransaction: .constant(Transaction.getOrderedTransactions(transactions: transactionsList)))
+                                    
+                                    , isActive: $showTransactionsList) {
+                    EmptyView()
+                }.opacity(0.0)
                 
             }
             
@@ -72,8 +84,11 @@ struct RecentTransactionList: View {
         .shadow(color: Color.black.opacity(0.15), radius: 10)
         
         }
-    
+
 }
+
+//MARK: - Making Extension To Get Results In Sorted Way
+
 
 //MARK: - Preview Providers
 struct RecentTransactionListPreviews: PreviewProvider {
