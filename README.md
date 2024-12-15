@@ -62,16 +62,25 @@ Themed icons and consistent typography.
 
 ### Visual Overview
 
-
 ### Screens
 
 **Main Screen (Overview)**
+</br>
+
+![**Main Screen (Overview)**](Previews/Overview.png "Home Screen")
+
+</br>
 
 Displays a summary section and interactive charts.
 
 Shows a list of recent transactions.
 
-**Transactions List**
+### Transactions List
+</br>
+
+![**Transactions List**](Previews/Transactions.png "Home Screen")
+
+</br>
 
 Categorized and organized view of transactions.
 
